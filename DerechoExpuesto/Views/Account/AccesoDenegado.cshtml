@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Acceso denegado";
+}
+
+
+<section style="
+        max-width: 600px;
+        margin: 70px auto;
+        padding: 40px;
+        background: white;
+        text-align: center;
+        border-radius: 18px;
+        border-top: 5px solid #DDA853;
+        box-shadow: 0 8px 25px rgba(24, 59, 78, 0.12);
+    ">
+
+    <h1 style="
+            color: #183B4E;
+        ">
+        Acceso denegado
+    </h1>
+
+
+    <p style="
+            color: #27548A;
+            line-height: 1.6;
+        ">
+        No tenés permisos para acceder
+        a esta sección.
+    </p>
+
+
+    <a asp-controller="Home"
+       asp-action="Index"
+       class="btn">
+        Volver al inicio
+    </a>
+
+</section>

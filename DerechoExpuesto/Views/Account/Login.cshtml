@@ -1,0 +1,119 @@
+﻿@model DerechoExpuesto.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Administración";
+}
+
+
+<section class="contacto">
+
+    <h2>
+        Administración
+    </h2>
+
+
+    <p class="contacto-texto">
+        Ingresá con tu cuenta para administrar
+        los servicios de Derecho Expuesto.
+    </p>
+
+
+    <form asp-controller="Account"
+          asp-action="Login"
+          asp-route-returnUrl="@ViewData["ReturnUrl"]"
+          method="post">
+
+        <div asp-validation-summary="ModelOnly"
+             style="
+                color: #b00020;
+                text-align: center;
+                margin-bottom: 20px;
+            "></div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Email">
+                Email
+            </label>
+
+
+            <input asp-for="Email"
+                   autocomplete="username"
+                   placeholder="Email del administrador" />
+
+
+            <span asp-validation-for="Email"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Password">
+                Contraseña
+            </label>
+
+
+            <input asp-for="Password"
+                   autocomplete="current-password"
+                   placeholder="Contraseña" />
+
+
+            <span asp-validation-for="Password"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div style="
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-bottom: 25px;
+            ">
+
+            <input asp-for="Recordarme"
+                   style="
+                    width: auto;
+                    margin: 0;
+                " />
+
+
+            <label asp-for="Recordarme"
+                   style="
+                    margin: 0;
+                    cursor: pointer;
+                ">
+                Recordarme
+            </label>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+            Iniciar sesión
+        </button>
+
+
+        <div style="
+                text-align: center;
+                margin-top: 25px;
+            ">
+
+            <a asp-controller="Home"
+               asp-action="Index"
+               style="
+                    color: #27548A;
+                    text-decoration: none;
+                ">
+                Volver a la página
+            </a>
+
+        </div>
+
+    </form>
+
+</section>

@@ -1,0 +1,185 @@
+﻿@model List<DerechoExpuesto.Models.Servicio>
+
+@{
+    ViewData["Title"] = "Administrar Servicios";
+}
+
+
+<section style="
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 30px;
+    ">
+
+    <!-- CABECERA -->
+
+    <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        ">
+
+        <div>
+
+            <h1 style="
+                    color: #183B4E;
+                    margin:
+                        0 0 5px;
+                ">
+                Administración de Servicios
+            </h1>
+
+
+            @if (
+                        User.Identity?.IsAuthenticated
+                        == true
+                        )
+            {
+                <small style="
+                            color: #27548A;
+                        ">
+                    Sesión iniciada como:
+                    @User.Identity.Name
+                </small>
+            }
+
+        </div>
+
+
+        <form asp-controller="Account"
+              asp-action="Logout"
+              method="post"
+              style="margin: 0;">
+
+            <button type="submit"
+                    class="btn">
+                Cerrar sesión
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- NAVEGACIÓN ADMIN -->
+
+    <div style="
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        ">
+
+        <a href="/Admin"
+           class="btn">
+            Panel principal
+        </a>
+
+
+        <a href="/Admin/Consultas"
+           class="btn">
+            Consultas
+        </a>
+
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn">
+            Ver página pública
+        </a>
+
+    </div>
+
+
+    <p style="
+            text-align: center;
+            margin-bottom: 30px;
+        ">
+        Desde acá podés agregar,
+        editar o eliminar los servicios
+        que aparecen en la página.
+    </p>
+
+
+    <div style="
+            text-align: center;
+            margin-bottom: 35px;
+        ">
+
+        <a href="/Admin/Servicios/Crear"
+           class="btn">
+            + Agregar servicio
+        </a>
+
+    </div>
+
+
+    @if (!Model.Any())
+    {
+        <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 15px;
+                    text-align: center;
+                    box-shadow:
+                        0 4px 12px
+                        rgba(24, 59, 78, 0.10);
+                ">
+
+            No hay servicios cargados.
+
+        </div>
+    }
+    else
+    {
+        <div class="cards">
+
+            @foreach (
+                    var servicio
+                    in Model
+                    )
+            {
+                <div class="card">
+
+                    <h3>
+                        @servicio.Titulo
+                    </h3>
+
+
+                    <p>
+                        @servicio.Descripcion
+                    </p>
+
+
+                    <div style="
+                                    display: flex;
+                                    justify-content: center;
+                                    gap: 10px;
+                                    margin-top: 20px;
+                                    flex-wrap: wrap;
+                                ">
+
+                        <a href="/Admin/Servicios/Editar/@servicio.Id"
+                           class="btn">
+                            Editar
+                        </a>
+
+
+                        <a href="/Admin/Servicios/Eliminar/@servicio.Id"
+                           class="btn">
+                            Eliminar
+                        </a>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</section>

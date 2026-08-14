@@ -1,0 +1,249 @@
+﻿@model DerechoExpuesto.Models.AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Panel de Administración";
+}
+
+<section style="
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 30px 20px;
+    ">
+
+    <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        ">
+
+        <div>
+
+            <h1 style="
+                    margin: 0 0 8px;
+                    color: #183B4E;
+                ">
+                Panel de Administración
+            </h1>
+
+            <p style="
+                    margin: 0;
+                    color: #27548A;
+                ">
+                Derecho Expuesto
+            </p>
+
+        </div>
+
+
+        <form asp-controller="Account"
+              asp-action="Logout"
+              method="post"
+              style="margin: 0;">
+
+            <button type="submit"
+                    class="btn">
+                Cerrar sesión
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div style="
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(210px, 1fr)
+                );
+            gap: 20px;
+            margin-bottom: 45px;
+        ">
+
+        <div style="
+                background: white;
+                border-radius: 18px;
+                padding: 25px;
+                border-top: 5px solid #DDA853;
+            ">
+
+            <strong>
+                SERVICIOS
+            </strong>
+
+            <div style="
+                    font-size: 38px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                ">
+                @Model.CantidadServicios
+            </div>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                border-radius: 18px;
+                padding: 25px;
+                border-top: 5px solid #27548A;
+            ">
+
+            <strong>
+                CONSULTAS
+            </strong>
+
+            <div style="
+                    font-size: 38px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                ">
+                @Model.CantidadConsultas
+            </div>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                border-radius: 18px;
+                padding: 25px;
+                border-top: 5px solid #DDA853;
+            ">
+
+            <strong>
+                NUEVAS
+            </strong>
+
+            <div style="
+                    font-size: 38px;
+                    font-weight: bold;
+                    margin-top: 10px;
+                ">
+                @Model.ConsultasNuevas
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <h2 style="
+            color: #183B4E;
+        ">
+        Administración
+    </h2>
+
+
+    <div style="
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+            gap: 25px;
+        ">
+
+
+        <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 18px;
+            ">
+
+            <div style="font-size: 38px;">
+                ⚖️
+            </div>
+
+            <h2>
+                Servicios
+            </h2>
+
+            <p>
+                Administrá las tarjetas
+                de servicios.
+            </p>
+
+            <a href="/Admin/Servicios"
+               class="btn">
+                Administrar servicios
+            </a>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 18px;
+            ">
+
+            <div style="font-size: 38px;">
+                ✉️
+            </div>
+
+            <h2>
+                Consultas
+            </h2>
+
+            <p>
+                Revisá las consultas
+                enviadas por los clientes.
+            </p>
+
+            <a href="/Admin/Consultas"
+               class="btn">
+                Ver consultas
+            </a>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                padding: 30px;
+                border-radius: 18px;
+            ">
+
+            <div style="font-size: 38px;">
+                ⚙️
+            </div>
+
+            <h2>
+                Configuración
+            </h2>
+
+            <p>
+                Cambiá teléfono, email,
+                horarios y redes sociales.
+            </p>
+
+            <a href="/Admin/Configuracion"
+               class="btn">
+                Configurar sitio
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div style="
+            margin-top: 45px;
+            text-align: center;
+        ">
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn">
+            Ver página pública
+        </a>
+
+    </div>
+
+</section>

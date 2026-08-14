@@ -1,0 +1,87 @@
+﻿@model DerechoExpuesto.Models.Servicio
+
+@{
+    ViewData["Title"] = "Editar Servicio";
+}
+
+
+<section class="contacto">
+
+    <h2>
+        Editar Servicio
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Modificá los datos del servicio.
+
+    </p>
+
+
+    <form method="post"
+          action="/Admin/Servicios/Editar/@Model.Id">
+
+        @Html.AntiForgeryToken()
+
+
+        <input type="hidden"
+               asp-for="Id" />
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Titulo">
+                Título
+            </label>
+
+
+            <input asp-for="Titulo" />
+
+
+            <span asp-validation-for="Titulo"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Descripcion">
+                Descripción
+            </label>
+
+
+            <textarea asp-for="Descripcion"></textarea>
+
+
+            <span asp-validation-for="Descripcion"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+            Guardar cambios
+        </button>
+
+
+        <div style="
+                text-align: center;
+                margin-top: 20px;
+            ">
+
+            <a href="/Admin/Servicios"
+               style="
+                    color: #27548A;
+                    text-decoration: none;
+                ">
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</section>

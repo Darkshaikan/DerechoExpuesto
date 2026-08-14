@@ -1,0 +1,179 @@
+﻿@model DerechoExpuesto.Models.ConfiguracionSitio
+
+@{
+    ViewData["Title"] = "Configuración";
+}
+
+<section style="
+        max-width: 750px;
+        margin: 50px auto;
+        padding: 30px 20px;
+    ">
+
+    <div style="
+            margin-bottom: 35px;
+        ">
+
+        <h1 style="
+                color: #183B4E;
+                margin-bottom: 8px;
+            ">
+            Configuración del sitio
+        </h1>
+
+        <p style="
+                color: #27548A;
+            ">
+            Modificá los datos generales
+            que aparecen en la página pública.
+        </p>
+
+    </div>
+
+
+    @if (
+        TempData["ConfiguracionGuardada"]
+        != null
+        )
+    {
+        <div style="
+                    background: white;
+                    padding: 15px 20px;
+                    margin-bottom: 25px;
+                    border-radius: 12px;
+                    border-left: 5px solid #DDA853;
+                    box-shadow:
+                        0 4px 12px
+                        rgba(24, 59, 78, 0.10);
+                ">
+            @TempData["ConfiguracionGuardada"]
+        </div>
+    }
+
+
+    <form method="post"
+          action="/Admin/Configuracion"
+          style="
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border-top: 5px solid #DDA853;
+            box-shadow:
+                0 8px 25px
+                rgba(24, 59, 78, 0.12);
+        ">
+
+        @Html.AntiForgeryToken()
+
+        <input type="hidden"
+               asp-for="Id" />
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Telefono"
+                   placeholder="+54 9 11 3067-0533" />
+
+            <span asp-validation-for="Telefono"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Email">
+                Email
+            </label>
+
+            <input asp-for="Email"
+                   placeholder="correo@ejemplo.com" />
+
+            <span asp-validation-for="Email"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Horario">
+                Horario
+            </label>
+
+            <input asp-for="Horario"
+                   placeholder="Lun a Vie de 9 a 17 hs" />
+
+            <span asp-validation-for="Horario"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="WhatsApp">
+                Número de WhatsApp
+            </label>
+
+            <input asp-for="WhatsApp"
+                   placeholder="5491130670533" />
+
+            <small style="
+                    display: block;
+                    margin-top: 5px;
+                    color: #777;
+                ">
+                Escribilo sin espacios,
+                guiones ni el símbolo +.
+            </small>
+
+            <span asp-validation-for="WhatsApp"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Instagram">
+                Instagram
+            </label>
+
+            <input asp-for="Instagram"
+                   placeholder="https://instagram.com/..." />
+
+            <span asp-validation-for="Instagram"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div style="
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 30px;
+            ">
+
+            <button type="submit"
+                    class="btn">
+                Guardar cambios
+            </button>
+
+
+            <a href="/Admin"
+               class="btn">
+                Volver al panel
+            </a>
+
+        </div>
+
+    </form>
+
+</section>

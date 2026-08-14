@@ -1,0 +1,462 @@
+﻿@model List<DerechoExpuesto.Models.Consulta>
+
+@{
+    ViewData["Title"] = "Consultas";
+
+    int nuevas =
+        Model.Count(
+            consulta =>
+                !consulta.Respondida
+        );
+
+    int respondidas =
+        Model.Count(
+            consulta =>
+                consulta.Respondida
+        );
+}
+
+
+<section style="
+        max-width: 1100px;
+        margin: 50px auto;
+        padding: 30px 20px;
+    ">
+
+    <!-- =========================
+         CABECERA
+    ========================== -->
+
+    <div style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        ">
+
+        <div>
+
+            <h1 style="
+                    color: #183B4E;
+                    margin: 0 0 7px;
+                ">
+                Consultas recibidas
+            </h1>
+
+
+            <p style="
+                    color: #27548A;
+                    margin: 0;
+                ">
+                Consultas enviadas desde
+                el formulario de Derecho Expuesto.
+            </p>
+
+        </div>
+
+
+        <form asp-controller="Account"
+              asp-action="Logout"
+              method="post"
+              style="margin: 0;">
+
+            <button type="submit"
+                    class="btn">
+                Cerrar sesión
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- =========================
+         NAVEGACIÓN
+    ========================== -->
+
+    <div style="
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        ">
+
+        <a href="/Admin"
+           class="btn">
+            Panel principal
+        </a>
+
+
+        <a href="/Admin/Servicios"
+           class="btn">
+            Servicios
+        </a>
+
+
+        <a href="/Admin/Configuracion"
+           class="btn">
+            Configuración
+        </a>
+
+
+        <a asp-controller="Home"
+           asp-action="Index"
+           class="btn">
+            Ver página pública
+        </a>
+
+    </div>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <div style="
+            display: grid;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(180px, 1fr)
+                );
+            gap: 15px;
+            margin-bottom: 35px;
+        ">
+
+        <div style="
+                background: white;
+                padding: 20px;
+                border-radius: 15px;
+                border-top: 4px solid #183B4E;
+                box-shadow:
+                    0 4px 12px
+                    rgba(24, 59, 78, 0.10);
+            ">
+
+            <strong style="
+                    color: #27548A;
+                ">
+                TOTAL
+            </strong>
+
+
+            <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #183B4E;
+                    margin-top: 8px;
+                ">
+                @Model.Count
+            </div>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                padding: 20px;
+                border-radius: 15px;
+                border-top: 4px solid #DDA853;
+                box-shadow:
+                    0 4px 12px
+                    rgba(24, 59, 78, 0.10);
+            ">
+
+            <strong style="
+                    color: #27548A;
+                ">
+                NUEVAS
+            </strong>
+
+
+            <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #183B4E;
+                    margin-top: 8px;
+                ">
+                @nuevas
+            </div>
+
+        </div>
+
+
+        <div style="
+                background: white;
+                padding: 20px;
+                border-radius: 15px;
+                border-top: 4px solid #27548A;
+                box-shadow:
+                    0 4px 12px
+                    rgba(24, 59, 78, 0.10);
+            ">
+
+            <strong style="
+                    color: #27548A;
+                ">
+                RESPONDIDAS
+            </strong>
+
+
+            <div style="
+                    font-size: 32px;
+                    font-weight: bold;
+                    color: #183B4E;
+                    margin-top: 8px;
+                ">
+                @respondidas
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         SIN CONSULTAS
+    ========================== -->
+    @if (!Model.Any())
+    {
+        <div style="
+                    padding: 35px;
+                    background: white;
+                    border-radius: 15px;
+                    text-align: center;
+                    color: #27548A;
+                    box-shadow:
+                        0 4px 12px
+                        rgba(24, 59, 78, 0.10);
+                ">
+
+            Todavía no hay consultas recibidas.
+
+        </div>
+    }
+
+    else
+    {
+
+        <!-- =========================
+             LISTADO
+        ========================== -->
+
+        <div style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                ">
+
+            @foreach (
+                    var consulta
+                    in Model
+                    )
+            {
+
+                <article style="
+                                background: white;
+                                padding: 22px;
+                                border-radius: 15px;
+                                border-left:
+                                    5px solid
+                                    @(consulta.Respondida
+                                                         ? "#27548A"
+                                                         : "#DDA853");
+                        box-shadow:
+                            0 4px 12px
+                            rgba(24, 59, 78, 0.10);
+                    ">
+
+                    <!-- DATOS -->
+
+                    <div style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: flex-start;
+                                    gap: 20px;
+                                    flex-wrap: wrap;
+                                ">
+
+                        <div>
+
+                            <h3 style="
+                                            color: #183B4E;
+                                            margin: 0 0 7px;
+                                        ">
+                                @consulta.Nombre
+                            </h3>
+
+
+                            <a href="mailto:@consulta.Email"
+                               style="
+                                            color: #27548A;
+                                            text-decoration: none;
+                                            font-size: 14px;
+                                        ">
+                                @consulta.Email
+                            </a>
+
+
+                    @if (
+                                        !string.IsNullOrWhiteSpace(
+                                        consulta.Telefono
+                                        )
+                                        )
+                            {
+                                <div style="
+                                                    margin-top: 5px;
+                                                    color: #27548A;
+                                                    font-size: 14px;
+                                                ">
+                                    @consulta.Telefono
+                                </div>
+                            }
+
+
+                            <div style="
+                                            color: #777;
+                                            font-size: 13px;
+                                            margin-top: 7px;
+                                        ">
+                                @consulta.Fecha.ToString(
+                                "dd/MM/yyyy HH:mm"
+                                                )
+                    </div>
+
+                </div>
+
+
+                <!-- ESTADO -->
+
+                <div>
+
+                    @if (
+                                        consulta.Respondida
+                                        )
+                            {
+                                <span style="
+                                                    display: inline-block;
+                                                    background:
+                                                        rgba(
+                                                            39,
+                                                            84,
+                                                            138,
+                                                            0.12
+                                                        );
+                                                    color: #27548A;
+                                                    padding: 6px 12px;
+                                                    border-radius: 20px;
+                                                    font-size: 13px;
+                                                    font-weight: bold;
+                                                ">
+                                    ✓ Respondida
+                                </span>
+                            }
+                            else
+                            {
+                                <span style="
+                                                    display: inline-block;
+                                                    background:
+                                                        rgba(
+                                                            221,
+                                                            168,
+                                                            83,
+                                                            0.18
+                                                        );
+                                                    color: #183B4E;
+                                                    padding: 6px 12px;
+                                                    border-radius: 20px;
+                                                    font-size: 13px;
+                                                    font-weight: bold;
+                                                ">
+                                    ● Nueva
+                                </span>
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- RESUMEN -->
+
+                    <p style="
+                                    margin-top: 20px;
+                                    line-height: 1.6;
+                                    color: #333;
+                                ">
+
+                        @{
+                            var resumen =
+                            consulta.Mensaje.Length > 160
+                            ?
+                            consulta.Mensaje.Substring(
+                            0,
+                            160
+                            ) + "..."
+                            :
+                            consulta.Mensaje;
+                        }
+
+                        @resumen
+
+                    </p>
+
+
+                    <!-- BOTONES -->
+
+                    <div style="
+                                    display: flex;
+                                    gap: 10px;
+                                    flex-wrap: wrap;
+                                    margin-top: 18px;
+                                ">
+
+                        <a href="/Admin/Consultas/Ver/@consulta.Id"
+                           class="btn">
+                            Ver consulta
+                        </a>
+
+
+                        <form method="post"
+                              action="/Admin/Consultas/CambiarEstado/@consulta.Id"
+                              style="margin: 0;">
+
+                            @Html.AntiForgeryToken()
+
+
+                            @if (
+                                                consulta.Respondida
+                                                )
+                            {
+                                <button type="submit"
+                                        class="btn">
+                                    Marcar pendiente
+                                </button>
+                            }
+                            else
+                            {
+                                <button type="submit"
+                                        class="btn">
+                                    Marcar respondida
+                                </button>
+                            }
+
+                        </form>
+
+
+                        <a href="/Admin/Consultas/Eliminar/@consulta.Id"
+                           class="btn">
+                            Eliminar
+                        </a>
+
+                    </div>
+
+                </article>
+            }
+
+        </div>
+    }
+
+</section>

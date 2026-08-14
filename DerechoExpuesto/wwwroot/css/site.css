@@ -1,0 +1,691 @@
+/* =========================
+   DERECHO EXPUESTO
+
+   Crema:         #F5EEDC
+   Azul:          #27548A
+   Azul petróleo: #183B4E
+   Dorado:        #DDA853
+========================= */
+
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F5EEDC;
+    color: #183B4E;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.barra-sup {
+    position: relative;
+    z-index: 1000;
+    min-height: 42px;
+    background-color: #183B4E;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 8px 40px;
+    font-size: 14px;
+}
+
+
+/* =========================
+   REDES
+========================= */
+
+.izquierda {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .izquierda a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .izquierda img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+        .izquierda img:hover {
+            transform: scale(1.1);
+        }
+
+
+/* =========================
+   CONTACTO SUPERIOR
+========================= */
+
+.derecha {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+    .derecha a,
+    .derecha .horario {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: white;
+        text-decoration: none;
+        white-space: nowrap;
+    }
+
+        .derecha a:hover {
+            color: #DDA853;
+        }
+
+    .derecha img {
+        width: 17px;
+        height: 17px;
+        object-fit: contain;
+    }
+
+
+/* =========================
+   CONTACTO MÓVIL
+========================= */
+
+.contacto-toggle,
+.contacto-menu {
+    display: none;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 10px 40px;
+    background-color: #F5EEDC;
+    border-bottom: 1px solid rgba(24, 59, 78, 0.08);
+}
+
+
+/* =========================
+   LOGO
+========================= */
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+    .logo img {
+        height: 120px;
+        width: auto;
+    }
+
+
+/* =========================
+   NAV
+========================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+    nav a {
+        position: relative;
+        color: #183B4E;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        nav a:hover {
+            color: #27548A;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #DDA853;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.btn {
+    display: inline-block;
+    border: none;
+    background-color: #DDA853;
+    color: #183B4E;
+    padding: 10px 20px;
+    border-radius: 22px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(24, 59, 78, 0.12);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+    .btn:hover {
+        background-color: #27548A;
+        color: white;
+        transform: translateY(-2px);
+    }
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    text-align: center;
+    padding: 110px 20px;
+    background: url("../imagenes/hero.webp") center / cover no-repeat;
+}
+
+    .hero h1 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #183B4E;
+        font-size: 2.6em;
+    }
+
+    .hero p {
+        margin: 0 0 25px;
+        color: #183B4E;
+        font-size: 1.2em;
+    }
+
+
+/* =========================
+   SERVICIOS
+========================= */
+
+.servicios {
+    padding: 70px 20px;
+    text-align: center;
+    background-color: #F5EEDC;
+}
+
+    .servicios h2 {
+        margin-top: 0;
+        margin-bottom: 40px;
+        color: #183B4E;
+        font-size: 2em;
+    }
+
+.cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    width: 250px;
+    padding: 25px 20px;
+    background-color: white;
+    border-radius: 15px;
+    border-top: 4px solid #DDA853;
+    box-shadow: 0 4px 12px rgba(24, 59, 78, 0.10);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(24, 59, 78, 0.16);
+    }
+
+    .card h3 {
+        color: #27548A;
+    }
+
+    .card p {
+        color: #183B4E;
+        line-height: 1.5;
+    }
+
+
+/* =========================
+   NOSOTROS
+========================= */
+
+.nosotros {
+    padding: 70px 20px;
+    background-color: #27548A;
+    color: white;
+    text-align: center;
+}
+
+    .nosotros h2 {
+        margin-top: 0;
+        margin-bottom: 20px;
+        color: #F5EEDC;
+        font-size: 2em;
+    }
+
+    .nosotros p {
+        max-width: 650px;
+        margin: auto;
+        color: white;
+        font-size: 1.1em;
+        line-height: 1.7;
+    }
+
+
+/* =========================
+   CONTACTO
+========================= */
+
+.contacto {
+    padding: 80px 20px;
+    background-color: #F5EEDC;
+    text-align: center;
+}
+
+    .contacto h2 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        color: #183B4E;
+        font-size: 2em;
+    }
+
+.contacto-texto {
+    max-width: 550px;
+    margin: 0 auto 35px;
+    color: #27548A;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.contacto form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 18px;
+    border-top: 5px solid #DDA853;
+    box-shadow: 0 8px 25px rgba(24, 59, 78, 0.12);
+    text-align: left;
+}
+
+.form-grupo {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .form-grupo label {
+        display: block;
+        margin-bottom: 7px;
+        color: #183B4E;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+.contacto input,
+.contacto textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid rgba(39, 84, 138, 0.30);
+    border-radius: 9px;
+    background-color: #F5EEDC;
+    color: #183B4E;
+    font-family: inherit;
+    font-size: 15px;
+}
+
+    .contacto input:focus,
+    .contacto textarea:focus {
+        outline: none;
+        border-color: #DDA853;
+        background-color: white;
+        box-shadow: 0 0 0 3px rgba(221, 168, 83, 0.18);
+    }
+
+.contacto textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-btn {
+    align-self: center;
+    min-width: 190px;
+    margin-top: 5px;
+    padding: 12px 25px;
+    font-size: 15px;
+}
+
+.form-aclaracion {
+    max-width: 450px;
+    margin: 18px auto 0;
+    color: rgba(24, 59, 78, 0.65);
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+/* =========================
+   WHATSAPP FLOTANTE
+========================= */
+
+.whatsapp {
+    position: fixed;
+    z-index: 1100;
+    right: 20px;
+    bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(24, 59, 78, 0.30);
+}
+
+    .whatsapp img {
+        width: 27px;
+        height: 27px;
+    }
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    padding: 45px 20px 20px;
+    background-color: #183B4E;
+    color: white;
+}
+
+.footer-contenido {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-col {
+    max-width: 300px;
+}
+
+    .footer-col h3,
+    .footer-col h4 {
+        margin-top: 0;
+        color: #DDA853;
+    }
+
+    .footer-col a {
+        display: block;
+        margin-bottom: 8px;
+        color: white;
+        text-decoration: none;
+    }
+
+        .footer-col a:hover {
+            color: #DDA853;
+        }
+
+.footer-bottom {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(245, 238, 220, 0.20);
+    text-align: center;
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+    .barra-sup {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .derecha {
+        gap: 14px;
+        font-size: 13px;
+    }
+
+    .navbar {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .logo img {
+        height: 100px;
+    }
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media (max-width: 768px) {
+
+    .barra-sup {
+        min-height: 48px;
+        padding: 7px 16px;
+    }
+
+    .derecha {
+        display: none;
+    }
+
+    .contacto-toggle {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        margin-left: auto;
+        padding: 7px 11px;
+        border: 1px solid rgba(221, 168, 83, 0.70);
+        border-radius: 18px;
+        background: transparent;
+        color: #F5EEDC;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+        .contacto-toggle img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .contacto-toggle .flecha {
+            transition: transform 0.25s ease;
+        }
+
+        .contacto-toggle.activo .flecha {
+            transform: rotate(180deg);
+        }
+
+    .contacto-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 12px;
+        right: 12px;
+        display: flex;
+        flex-direction: column;
+        background-color: #F5EEDC;
+        border-radius: 14px;
+        box-shadow: 0 12px 30px rgba(24, 59, 78, 0.28);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: 0.2s ease;
+    }
+
+        .contacto-menu.activo {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .contacto-menu a,
+        .contacto-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            color: #183B4E;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(39, 84, 138, 0.12);
+        }
+
+        .contacto-menu img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .contacto-menu strong {
+            display: block;
+            color: #27548A;
+        }
+
+        .contacto-menu span {
+            display: block;
+        }
+
+
+    /* NAVBAR */
+
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 8px 16px 14px;
+    }
+
+    .logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+        .logo img {
+            height: 90px;
+        }
+
+    nav {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        font-size: 14px;
+    }
+
+    .consultar-btn {
+        display: none;
+    }
+
+
+    /* CONTENIDO */
+
+    .hero {
+        padding: 75px 18px;
+    }
+
+        .hero h1 {
+            font-size: 2em;
+        }
+
+    .servicios,
+    .nosotros,
+    .contacto {
+        padding: 50px 16px;
+    }
+
+    .card {
+        width: min( 100%, 320px );
+    }
+
+
+    /* FORMULARIO */
+
+    .contacto form {
+        padding: 28px 20px;
+    }
+
+    .form-btn {
+        width: 100%;
+    }
+
+
+    /* FOOTER */
+
+    .footer-contenido {
+        flex-direction: column;
+    }
+
+
+    /* WHATSAPP */
+
+    .whatsapp {
+        right: 15px;
+        bottom: 15px;
+        width: 50px;
+        height: 50px;
+    }
+}

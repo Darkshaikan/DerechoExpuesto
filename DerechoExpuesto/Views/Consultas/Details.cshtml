@@ -1,0 +1,326 @@
+﻿@using System.Text.RegularExpressions
+
+@model DerechoExpuesto.Models.Consulta
+
+@{
+    ViewData["Title"] = "Consulta";
+
+    string telefonoLimpio =
+        string.Empty;
+
+    if (
+        !string.IsNullOrWhiteSpace(
+            Model.Telefono
+        )
+    )
+    {
+        telefonoLimpio =
+            Regex.Replace(
+                Model.Telefono,
+                @"\D",
+                ""
+            );
+    }
+}
+
+
+<section style="
+        max-width: 750px;
+        margin: 60px auto;
+        padding: 35px 25px;
+    ">
+
+    <div style="
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            border-top: 5px solid
+                @(Model.Respondida
+                             ? "#27548A"
+                             : "#DDA853");
+            box-shadow:
+                0 8px 25px
+                rgba(24, 59, 78, 0.12);
+        ">
+
+        <!-- =========================
+             ESTADO
+        ========================== -->
+
+        <div style="
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                gap: 20px;
+                flex-wrap: wrap;
+                margin-bottom: 25px;
+            ">
+
+            <div>
+
+                <h1 style="
+                        color: #183B4E;
+                        margin: 0 0 8px;
+                    ">
+                    Consulta de @Model.Nombre
+                </h1>
+
+
+                <div style="
+                        color: #777;
+                        font-size: 14px;
+                    ">
+                    Recibida el
+                    @Model.Fecha.ToString(
+                                        "dd/MM/yyyy 'a las' HH:mm"
+                                        )
+                </div>
+
+            </div>
+
+
+            @if (
+                        Model.Respondida
+                        )
+            {
+                <span style="
+                            background:
+                                rgba(
+                                    39,
+                                    84,
+                                    138,
+                                    0.12
+                                );
+                            color: #27548A;
+                            padding: 7px 14px;
+                            border-radius: 20px;
+                            font-weight: bold;
+                            font-size: 13px;
+                        ">
+                    ✓ Respondida
+                </span>
+            }
+            else
+            {
+                <span style="
+                            background:
+                                rgba(
+                                    221,
+                                    168,
+                                    83,
+                                    0.18
+                                );
+                            color: #183B4E;
+                            padding: 7px 14px;
+                            border-radius: 20px;
+                            font-weight: bold;
+                            font-size: 13px;
+                        ">
+                    ● Nueva
+                </span>
+            }
+
+        </div>
+
+
+        <!-- =========================
+             DATOS DEL CLIENTE
+        ========================== -->
+
+        <div style="
+                background: #F5EEDC;
+                padding: 20px;
+                border-radius: 12px;
+                margin-bottom: 30px;
+            ">
+
+            <h3 style="
+                    margin: 0 0 15px;
+                    color: #183B4E;
+                ">
+                Datos de contacto
+            </h3>
+
+
+            <p>
+                <strong>Email:</strong>
+
+                <a href="mailto:@Model.Email"
+                   style="
+                        color: #27548A;
+                    ">
+                    @Model.Email
+                </a>
+            </p>
+
+
+            @if (
+                        !string.IsNullOrWhiteSpace(
+                        Model.Telefono
+                        )
+                        )
+            {
+                <p>
+
+                    <strong>
+                        Teléfono:
+                    </strong>
+
+                    <a href="tel:@Model.Telefono"
+                       style="
+                                color: #27548A;
+                            ">
+                        @Model.Telefono
+                    </a>
+
+                </p>
+            }
+
+        </div>
+
+
+        <!-- =========================
+             MENSAJE
+        ========================== -->
+
+        <h3 style="
+                color: #27548A;
+                margin-bottom: 12px;
+            ">
+            Consulta
+        </h3>
+
+
+        <div style="
+                white-space: pre-wrap;
+                line-height: 1.8;
+                color: #333;
+                background: #fafafa;
+                padding: 20px;
+                border-radius: 12px;
+                border:
+                    1px solid
+                    rgba(
+                        39,
+                        84,
+                        138,
+                        0.12
+                    );
+            ">
+            @Model.Mensaje
+        </div>
+
+
+        <!-- =========================
+             ACCIONES DE CONTACTO
+        ========================== -->
+
+        <div style="
+                margin-top: 30px;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            ">
+
+            <a href="mailto:@Model.Email"
+               class="btn">
+                Responder por email
+            </a>
+
+
+            @if (
+                        !string.IsNullOrWhiteSpace(
+                        telefonoLimpio
+                        )
+                        )
+            {
+                <a href="https://wa.me/@telefonoLimpio"
+                   class="btn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Responder por WhatsApp
+                </a>
+            }
+
+        </div>
+
+
+        <!-- =========================
+             ESTADO
+        ========================== -->
+
+        <div style="
+                margin-top: 30px;
+                padding-top: 25px;
+                border-top: 1px solid #ddd;
+            ">
+
+            <form method="post"
+                  action="/Admin/Consultas/CambiarEstado/@Model.Id"
+                  style="margin: 0;">
+
+                @Html.AntiForgeryToken()
+
+
+                <input type="hidden"
+                       name="returnUrl"
+                       value="/Admin/Consultas/Ver/@Model.Id" />
+
+
+                @if (
+                                Model.Respondida
+                                )
+                {
+                    <button type="submit"
+                            class="btn">
+                        Marcar como pendiente
+                    </button>
+                }
+                else
+                {
+                    <button type="submit"
+                            class="btn">
+                        Marcar como respondida
+                    </button>
+                }
+
+            </form>
+
+        </div>
+
+
+        <!-- =========================
+             NAVEGACIÓN
+        ========================== -->
+
+        <div style="
+                margin-top: 30px;
+                padding-top: 25px;
+                border-top: 1px solid #ddd;
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            ">
+
+            <a href="/Admin/Consultas"
+               class="btn">
+                Volver a consultas
+            </a>
+
+
+            <a href="/Admin"
+               class="btn">
+                Panel principal
+            </a>
+
+
+            <a href="/Admin/Consultas/Eliminar/@Model.Id"
+               class="btn">
+                Eliminar consulta
+            </a>
+
+        </div>
+
+    </div>
+
+</section>

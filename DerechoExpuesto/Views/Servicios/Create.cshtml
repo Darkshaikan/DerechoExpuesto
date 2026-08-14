@@ -1,0 +1,85 @@
+﻿@model DerechoExpuesto.Models.Servicio
+
+@{
+    ViewData["Title"] = "Agregar Servicio";
+}
+
+
+<section class="contacto">
+
+    <h2>
+        Agregar Servicio
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Completá los datos del nuevo servicio.
+
+    </p>
+
+
+    <form method="post"
+          action="/Admin/Servicios/Crear">
+
+        @Html.AntiForgeryToken()
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Titulo">
+                Título
+            </label>
+
+
+            <input asp-for="Titulo"
+                   placeholder="Ej: Sucesiones" />
+
+
+            <span asp-validation-for="Titulo"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Descripcion">
+                Descripción
+            </label>
+
+
+            <textarea asp-for="Descripcion"
+                      placeholder="Descripción del servicio..."></textarea>
+
+
+            <span asp-validation-for="Descripcion"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+            Guardar servicio
+        </button>
+
+
+        <div style="
+                text-align: center;
+                margin-top: 20px;
+            ">
+
+            <a href="/Admin/Servicios"
+               style="
+                    color: #27548A;
+                    text-decoration: none;
+                ">
+                Cancelar
+            </a>
+
+        </div>
+
+    </form>
+
+</section>

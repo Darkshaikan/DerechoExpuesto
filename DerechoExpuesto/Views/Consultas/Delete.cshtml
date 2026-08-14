@@ -1,0 +1,66 @@
+﻿@model DerechoExpuesto.Models.Consulta
+
+@{
+    ViewData["Title"] = "Eliminar Consulta";
+}
+
+
+<section style="
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 35px;
+        background: white;
+        text-align: center;
+        border-radius: 18px;
+        border-top: 5px solid #DDA853;
+        box-shadow: 0 8px 25px rgba(24, 59, 78, 0.12);
+    ">
+
+    <h1 style="
+            color: #183B4E;
+        ">
+        Eliminar consulta
+    </h1>
+
+
+    <p>
+        ¿Estás seguro de que querés
+        eliminar la consulta de:
+    </p>
+
+
+    <h2 style="
+            color: #27548A;
+        ">
+        @Model.Nombre
+    </h2>
+
+
+    <p>
+        @Model.Email
+    </p>
+
+
+    <form method="post"
+          action="/Admin/Consultas/Eliminar/@Model.Id"
+          style="
+            margin-top: 30px;
+        ">
+
+        @Html.AntiForgeryToken()
+
+
+        <button type="submit"
+                class="btn">
+            Sí, eliminar
+        </button>
+
+
+        <a href="/Admin/Consultas"
+           class="btn">
+            Cancelar
+        </a>
+
+    </form>
+
+</section>

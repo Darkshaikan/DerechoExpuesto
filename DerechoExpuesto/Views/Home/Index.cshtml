@@ -1,0 +1,246 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+
+<!-- =========================
+     HERO
+========================== -->
+
+<section class="hero">
+
+    <div class="hero-contenido">
+
+        <h1>
+            Tu espacio seguro
+        </h1>
+
+        <p>
+            Asesoramiento legal claro, humano y accesible.
+        </p>
+
+        <a href="#contacto"
+           class="btn">
+            Contactar ahora
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SERVICIOS
+========================== -->
+
+<section id="servicios"
+         class="servicios">
+
+    <h2>
+        Servicios
+    </h2>
+
+
+    <div class="cards">
+
+        @foreach (
+                var servicio
+                in Model.Servicios
+                )
+        {
+            <div class="card">
+
+                <h3>
+                    @servicio.Titulo
+                </h3>
+
+                <p>
+                    @servicio.Descripcion
+                </p>
+
+            </div>
+        }
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NOSOTROS
+========================== -->
+
+<section id="nosotros"
+         class="nosotros">
+
+    <h2>
+        Sobre Nosotros
+    </h2>
+
+
+    <p>
+
+        En Derecho Expuesto brindamos
+        asesoramiento legal con cercanía,
+        compromiso y transparencia.
+
+        Nuestro objetivo es que cada persona
+        entienda sus derechos y se sienta
+        acompañada en todo momento.
+
+    </p>
+
+</section>
+
+
+<!-- =========================
+     CONTACTO
+========================== -->
+
+<section id="contacto"
+         class="contacto">
+
+    <h2>
+        Contacto
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos brevemente tu situación
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div style="
+                    max-width: 600px;
+                    margin: 0 auto 25px;
+                    padding: 15px 20px;
+                    background-color: #ffffff;
+                    border-left: 5px solid #DDA853;
+                    border-radius: 10px;
+                    color: #183B4E;
+                    box-shadow: 0 4px 12px rgba(24, 59, 78, 0.10);
+                ">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsulta"
+          method="post">
+
+        <div asp-validation-summary="ModelOnly"
+             style="
+                color: #b00020;
+                text-align: center;
+                margin-bottom: 20px;
+            "></div>
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+
+            <span asp-validation-for="Contacto.Nombre"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+
+            <span asp-validation-for="Contacto.Email"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <!-- TELÉFONO -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+
+            <span asp-validation-for="Contacto.Telefono"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <!-- CONSULTA -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente en qué podemos ayudarte..."></textarea>
+
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  style="color: #b00020;"></span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+            Enviar consulta
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

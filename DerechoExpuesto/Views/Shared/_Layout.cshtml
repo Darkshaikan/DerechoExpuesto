@@ -1,0 +1,464 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0" />
+
+    <title>
+        @ViewData["Title"] - Derecho Expuesto
+    </title>
+
+    <link rel="stylesheet"
+          href="~/css/site.css"
+          asp-append-version="true" />
+
+</head>
+
+<body>
+
+    @{
+        DerechoExpuesto.Models.ConfiguracionSitio? config =
+        null;
+
+        if (Model is DerechoExpuesto.Models.HomeViewModel homeModel)
+        {
+            config =
+            homeModel.Configuracion;
+        }
+    }
+
+
+    @if (config != null)
+    {
+
+        <!-- WHATSAPP FLOTANTE -->
+
+        <a href="https://wa.me/@config.WhatsApp"
+           class="whatsapp"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Contactar por WhatsApp">
+
+            <img src="~/imagenes/whatsapp.png"
+                 alt="WhatsApp" />
+
+        </a>
+
+    }
+
+
+    <header>
+
+        <div class="barra-sup">
+
+            <div class="izquierda">
+
+                @if (config != null)
+                {
+
+                    <a href="@config.Instagram"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Instagram">
+
+                        <img src="~/imagenes/instagram.png"
+                             alt="Instagram" />
+
+                    </a>
+
+
+                    <a href="https://wa.me/@config.WhatsApp"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="WhatsApp">
+
+                        <img src="~/imagenes/whatsapp.png"
+                             alt="WhatsApp" />
+
+                    </a>
+
+                }
+
+            </div>
+
+
+            @if (config != null)
+            {
+
+                <div class="derecha">
+
+                    <a href="tel:@config.Telefono">
+
+                        <img src="~/imagenes/llamar.png"
+                             alt="" />
+
+                        <span>
+                            @config.Telefono
+                        </span>
+
+                    </a>
+
+
+                    <a href="mailto:@config.Email">
+
+                        <img src="~/imagenes/correo-no-leido.png"
+                             alt="" />
+
+                        <span>
+                            @config.Email
+                        </span>
+
+                    </a>
+
+
+                    <div class="horario">
+
+                        <img src="~/imagenes/reloj-de-pared.png"
+                             alt="" />
+
+                        <span>
+                            @config.Horario
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button class="contacto-toggle"
+                        id="contactoToggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="contactoMenu">
+
+                    <img src="~/imagenes/llamar.png"
+                         alt="" />
+
+                    <span>
+                        Contacto
+                    </span>
+
+                    <span class="flecha"
+                          aria-hidden="true">
+                        ⌄
+                    </span>
+
+                </button>
+
+
+                <div class="contacto-menu"
+                     id="contactoMenu">
+
+                    <a href="tel:@config.Telefono">
+
+                        <img src="~/imagenes/llamar.png"
+                             alt="" />
+
+                        <div>
+
+                            <strong>
+                                Teléfono
+                            </strong>
+
+                            <span>
+                                @config.Telefono
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <a href="mailto:@config.Email">
+
+                        <img src="~/imagenes/correo-no-leido.png"
+                             alt="" />
+
+                        <div>
+
+                            <strong>
+                                Email
+                            </strong>
+
+                            <span>
+                                @config.Email
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                    <div class="contacto-menu-item">
+
+                        <img src="~/imagenes/reloj-de-pared.png"
+                             alt="" />
+
+                        <div>
+
+                            <strong>
+                                Horarios
+                            </strong>
+
+                            <span>
+                                @config.Horario
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+
+        <div class="navbar">
+
+            <a class="logo"
+               asp-controller="Home"
+               asp-action="Index"
+               aria-label="Ir al inicio">
+
+                <img src="~/imagenes/logo.png"
+                     alt="Derecho Expuesto" />
+
+            </a>
+
+
+            <nav>
+
+                <a asp-controller="Home"
+                   asp-action="Index">
+                    Inicio
+                </a>
+
+                <a href="/#servicios">
+                    Servicios
+                </a>
+
+                <a href="/#nosotros">
+                    Nosotros
+                </a>
+
+                <a href="/#contacto">
+                    Contacto
+                </a>
+
+            </nav>
+
+
+            <a href="/#contacto"
+               class="btn consultar-btn">
+                Consultar
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        @RenderBody()
+
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="footer-contenido">
+
+            <div class="footer-col">
+
+                <h3>
+                    Derecho Expuesto
+                </h3>
+
+                <p>
+                    Tu espacio seguro.
+                    Asesoramiento legal claro y accesible.
+                </p>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>
+                    Secciones
+                </h4>
+
+                <a href="/">
+                    Inicio
+                </a>
+
+                <a href="/#servicios">
+                    Servicios
+                </a>
+
+                <a href="/#nosotros">
+                    Nosotros
+                </a>
+
+                <a href="/#contacto">
+                    Contacto
+                </a>
+
+            </div>
+
+
+            @if (config != null)
+            {
+
+                <div class="footer-col">
+
+                    <h4>
+                        Contacto
+                    </h4>
+
+                    <p>
+                        📞 @config.Telefono
+                    </p>
+
+                    <p>
+                        📧 @config.Email
+                    </p>
+
+                    <p>
+                        🕒 @config.Horario
+                    </p>
+
+                </div>
+
+            }
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Derecho Expuesto -
+                Todos los derechos reservados
+            </p>
+
+            <p>
+                Web Design by Darkshaikan
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        const contactoToggle =
+            document.getElementById(
+                "contactoToggle"
+            );
+
+        const contactoMenu =
+            document.getElementById(
+                "contactoMenu"
+            );
+
+
+        if (
+            contactoToggle
+            &&
+            contactoMenu
+        )
+        {
+
+            contactoToggle.addEventListener(
+                "click",
+                function (event)
+                {
+
+                    event.stopPropagation();
+
+
+                    const abierto =
+                        contactoMenu
+                            .classList
+                            .toggle(
+                                "activo"
+                            );
+
+
+                    contactoToggle
+                        .classList
+                        .toggle(
+                            "activo",
+                            abierto
+                        );
+
+
+                    contactoToggle
+                        .setAttribute(
+                            "aria-expanded",
+                            abierto
+                        );
+
+                }
+            );
+
+
+            contactoMenu.addEventListener(
+                "click",
+                function (event)
+                {
+                    event.stopPropagation();
+                }
+            );
+
+
+            document.addEventListener(
+                "click",
+                function ()
+                {
+
+                    contactoMenu
+                        .classList
+                        .remove(
+                            "activo"
+                        );
+
+
+                    contactoToggle
+                        .classList
+                        .remove(
+                            "activo"
+                        );
+
+
+                    contactoToggle
+                        .setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                }
+            );
+
+        }
+
+    </script>
+
+
+    @await RenderSectionAsync(
+    "Scripts",
+        required: false
+        )
+
+</body>
+
+</html>

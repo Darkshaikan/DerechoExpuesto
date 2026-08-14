@@ -1,0 +1,69 @@
+﻿@model DerechoExpuesto.Models.Servicio
+
+@{
+    ViewData["Title"] = "Eliminar Servicio";
+}
+
+
+<section style="
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 35px;
+        text-align: center;
+        background: white;
+        border-radius: 18px;
+        border-top: 5px solid #DDA853;
+        box-shadow: 0 8px 25px rgba(24, 59, 78, 0.12);
+    ">
+
+    <h1 style="
+            color: #183B4E;
+        ">
+        Eliminar Servicio
+    </h1>
+
+
+    <p>
+        ¿Estás seguro de que querés eliminar este servicio?
+    </p>
+
+
+    <h2 style="
+            color: #27548A;
+            margin-top: 30px;
+        ">
+        @Model.Titulo
+    </h2>
+
+
+    <p>
+        @Model.Descripcion
+    </p>
+
+
+    <form method="post"
+          action="/Admin/Servicios/Eliminar/@Model.Id"
+          style="
+            margin-top: 30px;
+        ">
+
+        @Html.AntiForgeryToken()
+
+
+        <button type="submit"
+                class="btn">
+            Sí, eliminar
+        </button>
+
+
+        <a href="/Admin/Servicios"
+           class="btn"
+           style="
+                margin-left: 10px;
+            ">
+            Cancelar
+        </a>
+
+    </form>
+
+</section>
