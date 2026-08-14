@@ -28,7 +28,7 @@ namespace DerechoExpuesto.Models
 
 
         public DateTime Fecha { get; set; } =
-            DateTime.Now;
+            DateTime.UtcNow;
 
 
         public bool Respondida { get; set; } = false;

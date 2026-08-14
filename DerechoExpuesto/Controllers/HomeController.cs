@@ -57,16 +57,6 @@ namespace DerechoExpuesto.Controllers
         public async Task<IActionResult> EnviarConsulta(
             HomeViewModel modelo)
         {
-            /*
-             * Servicios y Configuracion no vienen
-             * desde el formulario.
-             *
-             * Los volvemos a cargar desde
-             * la base de datos para poder
-             * reconstruir correctamente la página
-             * si existe algún error de validación.
-             */
-
             modelo.Servicios =
                 await _context.Servicios
                     .OrderBy(
@@ -80,10 +70,6 @@ namespace DerechoExpuesto.Controllers
                 await ObtenerConfiguracion();
 
 
-            // ========================================
-            // VALIDACIÓN DEL FORMULARIO
-            // ========================================
-
             if (!ModelState.IsValid)
             {
                 return View(
@@ -92,10 +78,6 @@ namespace DerechoExpuesto.Controllers
                 );
             }
 
-
-            // ========================================
-            // CREAR CONSULTA
-            // ========================================
 
             var consulta =
                 new Consulta
@@ -112,17 +94,17 @@ namespace DerechoExpuesto.Controllers
                     Mensaje =
                         modelo.Contacto.Mensaje,
 
+                    // IMPORTANTE:
+                    // PostgreSQL + Npgsql requiere UTC
+                    // para timestamp with time zone.
+
                     Fecha =
-                        DateTime.Now,
+                        DateTime.UtcNow,
 
                     Respondida =
                         false
                 };
 
-
-            // ========================================
-            // GUARDAR EN SQLITE
-            // ========================================
 
             _context.Consultas.Add(
                 consulta
@@ -132,21 +114,9 @@ namespace DerechoExpuesto.Controllers
             await _context.SaveChangesAsync();
 
 
-            // ========================================
-            // MENSAJE DE CONFIRMACIÓN
-            // ========================================
-
             TempData["ConsultaEnviada"] =
                 "Tu consulta fue enviada correctamente. Nos pondremos en contacto con vos a la brevedad.";
 
-
-            /*
-             * Redirigimos después de guardar.
-             *
-             * Esto también evita que al refrescar
-             * el navegador se vuelva a enviar
-             * la misma consulta.
-             */
 
             return RedirectToAction(
                 nameof(Index)
@@ -172,10 +142,6 @@ namespace DerechoExpuesto.Controllers
                 return configuracion;
             }
 
-
-            // ========================================
-            // CONFIGURACIÓN POR DEFECTO
-            // ========================================
 
             configuracion =
                 new ConfiguracionSitio

@@ -25,7 +25,7 @@ namespace DerechoExpuesto.Migrations
                 });
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc />1
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
