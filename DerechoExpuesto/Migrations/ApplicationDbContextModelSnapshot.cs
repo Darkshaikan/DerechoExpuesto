@@ -92,7 +92,6 @@ namespace DerechoExpuesto.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Titulo")

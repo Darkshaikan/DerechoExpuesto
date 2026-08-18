@@ -50,15 +50,20 @@
                 in Model.Servicios
                 )
         {
-            <div class="card">
+            <div class="card"
+                 tabindex="0">
 
                 <h3>
                     @servicio.Titulo
                 </h3>
 
-                <p>
+                <p class="card-descripcion">
                     @servicio.Descripcion
                 </p>
+
+                <span class="card-indicador">
+                    Tocá para ver más
+                </span>
 
             </div>
         }

@@ -231,14 +231,16 @@ nav {
     .hero h1 {
         margin-top: 0;
         margin-bottom: 15px;
-        color: #183B4E;
+        color: #FFFFFF;
         font-size: 2.6em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     }
 
     .hero p {
         margin: 0 0 25px;
-        color: #183B4E;
+        color: #FFFFFF;
         font-size: 1.2em;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
     }
 
 
@@ -262,9 +264,15 @@ nav {
 .cards {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 20px;
 }
+
+
+/* =========================
+   TARJETAS DE SERVICIOS
+========================= */
 
 .card {
     width: 250px;
@@ -273,22 +281,64 @@ nav {
     border-radius: 15px;
     border-top: 4px solid #DDA853;
     box-shadow: 0 4px 12px rgba(24, 59, 78, 0.10);
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-    .card:hover {
+    .card:hover,
+    .card:focus {
         transform: translateY(-5px);
         box-shadow: 0 8px 20px rgba(24, 59, 78, 0.16);
     }
 
     .card h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
         color: #27548A;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
-    .card p {
-        color: #183B4E;
-        line-height: 1.5;
-    }
+
+/* =========================
+   DESCRIPCIÓN DE SERVICIOS
+========================= */
+
+.card-descripcion {
+    margin: 0;
+    color: #183B4E;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+
+/* =========================
+   DESPLEGAR DESCRIPCIÓN
+========================= */
+
+.card:hover .card-descripcion,
+.card:focus .card-descripcion {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+
+/* =========================
+   INDICADOR MÓVIL
+========================= */
+
+.card-indicador {
+    display: none;
+}
 
 
 /* =========================
@@ -610,7 +660,9 @@ nav {
         }
 
 
-    /* NAVBAR */
+    /* =========================
+       NAVBAR
+    ========================= */
 
     .navbar {
         flex-wrap: wrap;
@@ -641,7 +693,9 @@ nav {
     }
 
 
-    /* CONTENIDO */
+    /* =========================
+       CONTENIDO
+    ========================= */
 
     .hero {
         padding: 75px 18px;
@@ -657,12 +711,60 @@ nav {
         padding: 50px 16px;
     }
 
+
+    /* =========================
+       TARJETAS EN MÓVIL
+    ========================= */
+
     .card {
-        width: min( 100%, 320px );
+        width: min(100%, 320px);
+    }
+
+        .card:hover {
+            transform: none;
+        }
+
+        .card:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(24, 59, 78, 0.16);
+        }
+
+
+    /* =========================
+       TEXTO DE TARJETAS MÓVIL
+    ========================= */
+
+    .card-descripcion {
+        -webkit-line-clamp: 4;
+    }
+
+    .card:focus .card-descripcion {
+        display: block;
+        -webkit-line-clamp: unset;
+        overflow: visible;
     }
 
 
-    /* FORMULARIO */
+    /* =========================
+       VER MÁS EN MÓVIL
+    ========================= */
+
+    .card-indicador {
+        display: block;
+        margin-top: 14px;
+        color: #DDA853;
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+    .card:focus .card-indicador {
+        display: none;
+    }
+
+
+    /* =========================
+       FORMULARIO
+    ========================= */
 
     .contacto form {
         padding: 28px 20px;
@@ -673,14 +775,18 @@ nav {
     }
 
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     .footer-contenido {
         flex-direction: column;
     }
 
 
-    /* WHATSAPP */
+    /* =========================
+       WHATSAPP
+    ========================= */
 
     .whatsapp {
         right: 15px;
