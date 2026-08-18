@@ -1,0 +1,347 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Accidentes de Trabajo";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Derecho del Trabajo
+        </span>
+
+        <h1>
+            Accidentes de Trabajo
+        </h1>
+
+        <p>
+            Asesoramiento y acompañamiento legal
+            frente a accidentes laborales.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- =========================
+             IMAGEN
+        ========================== -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/accidentes_trabajo.png"
+                 alt="Accidentes de trabajo" />
+
+        </div>
+
+
+        <!-- =========================
+             TEXTO
+        ========================== -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Accidentes de trabajo
+            </span>
+
+
+            <h2>
+                ¿Sufriste un accidente mientras trabajabas?
+            </h2>
+
+
+            <p>
+                Si sufriste un accidente mientras trabajabas
+                o mientras ibas o volvías de tu trabajo,
+                es importante que conozcas tus derechos.
+            </p>
+
+
+            <p>
+                Te acompañamos durante todo el proceso
+                frente a la ART, brindándote asesoramiento
+                para que puedas acceder a las prestaciones
+                médicas y económicas que correspondan.
+            </p>
+
+
+            <h3>
+                Podemos ayudarte ante:
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Accidentes ocurridos en el lugar de trabajo.
+                </li>
+
+                <li>
+                    Accidentes ocurridos durante la jornada laboral.
+                </li>
+
+                <li>
+                    Accidentes in itinere, ocurridos mientras
+                    vas o volvés de tu trabajo.
+                </li>
+
+                <li>
+                    Rechazo del accidente por parte de la ART.
+                </li>
+
+                <li>
+                    Problemas con las prestaciones médicas.
+                </li>
+
+                <li>
+                    Alta médica cuando todavía existen
+                    molestias o secuelas.
+                </li>
+
+                <li>
+                    Determinación de incapacidad laboral.
+                </li>
+
+                <li>
+                    Reclamos ante las Comisiones Médicas.
+                </li>
+
+            </ul>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Cada situación es diferente.
+                Analizamos tu caso de manera personalizada
+                para orientarte sobre los pasos a seguir.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LLAMADO A LA ACCIÓN
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            No dejes pasar el tiempo
+        </h2>
+
+        <p>
+            Si sufriste un accidente laboral,
+            consultanos para analizar tu situación
+            y conocer las alternativas disponibles.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO DE CONSULTA
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre tu caso
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos brevemente qué ocurrió
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    <!-- =========================
+         MENSAJE DE ÉXITO
+    ========================== -->
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <!-- =========================
+         FORMULARIO
+    ========================== -->
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaAccidentesDeTrabajo"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <!-- =========================
+             NOMBRE
+        ========================== -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+
+                Nombre y apellido
+
+            </label>
+
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             EMAIL
+        ========================== -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+
+                Email
+
+            </label>
+
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             TELÉFONO
+        ========================== -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+
+                Teléfono
+
+            </label>
+
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             CONSULTA
+        ========================== -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+
+                Consulta
+
+            </label>
+
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente qué ocurrió y en qué podemos ayudarte..."></textarea>
+
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- =========================
+             BOTÓN
+        ========================== -->
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

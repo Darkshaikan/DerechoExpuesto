@@ -1,0 +1,322 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Amparos de Salud";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Amparos de Salud
+        </span>
+
+        <h1>
+            Amparos de Salud
+        </h1>
+
+        <p>
+            Asesoramiento y representación jurídica
+            frente a negativas o demoras de cobertura.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/amparos_salud.png"
+                 alt="Amparos de Salud" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Amparos de Salud
+            </span>
+
+
+            <h2>
+                Cuando necesitás un tratamiento
+                y la obra social o prepaga dice que no
+            </h2>
+
+
+            <p>
+                La falta de cobertura de un tratamiento,
+                una prótesis o una prestación médica
+                puede generar una situación de urgencia
+                que requiere una respuesta jurídica rápida.
+            </p>
+
+
+            <p>
+                Brindamos asesoramiento y representación
+                en amparos de salud por negativa o demora
+                en la cobertura de tratamientos,
+                medicamentos, prótesis, prestaciones
+                especiales y otras situaciones vinculadas
+                con el acceso a la salud.
+            </p>
+
+
+            <h3>
+                Podemos ayudarte ante:
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Negativa de cobertura de tratamientos.
+                </li>
+
+                <li>
+                    Demoras injustificadas de la obra social
+                    o empresa de medicina prepaga.
+                </li>
+
+                <li>
+                    Falta de cobertura de medicamentos.
+                </li>
+
+                <li>
+                    Negativa de prótesis.
+                </li>
+
+                <li>
+                    Prestaciones médicas especiales.
+                </li>
+
+                <li>
+                    Cobertura de geriátricos.
+                </li>
+
+                <li>
+                    Interrupción o reducción de prestaciones.
+                </li>
+
+                <li>
+                    Situaciones que requieren una respuesta
+                    jurídica urgente.
+                </li>
+
+            </ul>
+
+
+            <p>
+                Analizamos cada caso y la documentación
+                disponible para determinar la estrategia
+                jurídica adecuada.
+            </p>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Tu salud no puede esperar.
+                Consultanos ante una negativa
+                o demora de cobertura.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            La salud necesita respuestas a tiempo
+        </h2>
+
+        <p>
+            Si tu obra social o prepaga rechazó
+            o demora una prestación, podemos analizar
+            la documentación y orientarte sobre
+            las alternativas disponibles.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre tu cobertura
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos qué prestación necesitás
+        y cuál fue la respuesta de tu obra social
+        o prepaga.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaAmparosDeSalud"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- TELÉFONO -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- CONSULTA -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos qué prestación necesitás y qué respuesta recibiste..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

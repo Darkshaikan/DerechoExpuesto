@@ -1,0 +1,318 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Asesoramiento Jurídico";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Asesoramiento Jurídico
+        </span>
+
+        <h1>
+            Asesoramiento Jurídico
+        </h1>
+
+        <p>
+            Información clara y orientación legal
+            para tomar decisiones con mayor seguridad.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/asesoramiento_juridico.png"
+                 alt="Asesoramiento Jurídico" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Asesoramiento Jurídico
+            </span>
+
+
+            <h2>
+                Una consulta a tiempo puede
+                evitar un problema mayor
+            </h2>
+
+
+            <p>
+                No siempre es necesario iniciar un juicio.
+                Muchas veces, contar con asesoramiento jurídico
+                antes de tomar una decisión permite prevenir
+                conflictos, conocer tus derechos y elegir
+                la mejor estrategia.
+            </p>
+
+
+            <p>
+                Ofrecemos consultas personalizadas
+                presenciales y virtuales, adaptadas
+                a la situación particular de cada cliente.
+            </p>
+
+
+            <h3>
+                ¿Cómo podemos ayudarte?
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Analizamos tu situación particular.
+                </li>
+
+                <li>
+                    Te explicamos cuáles son tus derechos.
+                </li>
+
+                <li>
+                    Evaluamos las alternativas jurídicas disponibles.
+                </li>
+
+                <li>
+                    Te orientamos sobre los pasos a seguir.
+                </li>
+
+                <li>
+                    Analizamos documentación relacionada con tu caso.
+                </li>
+
+                <li>
+                    Brindamos consultas presenciales.
+                </li>
+
+                <li>
+                    Brindamos consultas virtuales.
+                </li>
+
+                <li>
+                    Buscamos alternativas para prevenir
+                    o resolver conflictos.
+                </li>
+
+            </ul>
+
+
+            <p>
+                Analizamos tu caso, te explicamos
+                las alternativas disponibles y te orientamos
+                sobre los pasos a seguir.
+            </p>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Contanos tu situación.
+                Encontramos juntos el camino jurídico
+                más adecuado.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            Tomá decisiones con información
+        </h2>
+
+        <p>
+            Una consulta jurídica puede ayudarte
+            a conocer tus derechos, prevenir conflictos
+            y evaluar las alternativas disponibles
+            antes de tomar una decisión.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Contanos tu situación
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Describinos brevemente tu consulta
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaAsesoramientoJuridico"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- TELÉFONO -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- CONSULTA -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente en qué podemos ayudarte..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

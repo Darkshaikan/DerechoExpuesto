@@ -1,0 +1,318 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Sucesiones";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Sucesiones
+        </span>
+
+        <h1>
+            Sucesiones
+        </h1>
+
+        <p>
+            Acompañamiento jurídico durante todo
+            el proceso sucesorio.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/sucesiones.png"
+                 alt="Sucesiones" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Sucesiones
+            </span>
+
+
+            <h2>
+                Ordenar una herencia también
+                requiere asesoramiento
+            </h2>
+
+
+            <p>
+                Te acompañamos durante todo el proceso
+                sucesorio, tanto en sucesiones con
+                testamento como en sucesiones intestadas,
+                desde el inicio del trámite hasta su
+                finalización.
+            </p>
+
+
+            <p>
+                Asesoramos a herederos y demás interesados
+                en cuestiones relacionadas con la
+                declaratoria de herederos, bienes,
+                derechos hereditarios, partición y
+                conflictos entre herederos.
+            </p>
+
+
+            <h3>
+                Podemos ayudarte en:
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Inicio de sucesiones.
+                </li>
+
+                <li>
+                    Sucesiones con testamento.
+                </li>
+
+                <li>
+                    Sucesiones intestadas.
+                </li>
+
+                <li>
+                    Declaratoria de herederos.
+                </li>
+
+                <li>
+                    Identificación y administración de bienes.
+                </li>
+
+                <li>
+                    Derechos hereditarios.
+                </li>
+
+                <li>
+                    Partición de bienes.
+                </li>
+
+                <li>
+                    Conflictos entre herederos.
+                </li>
+
+            </ul>
+
+
+            <p>
+                Nuestro objetivo es que el proceso
+                sea claro y ordenado, brindándote
+                información sobre cada etapa del trámite.
+            </p>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Si necesitás iniciar una sucesión
+                o conocer tus derechos sobre una herencia,
+                consultanos.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            Te acompañamos durante todo el proceso
+        </h2>
+
+        <p>
+            Analizamos la situación patrimonial y familiar
+            para orientarte sobre los pasos necesarios
+            para iniciar o continuar una sucesión.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre una sucesión
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos brevemente tu situación
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaSucesiones"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- TELÉFONO -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- CONSULTA -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente tu situación sucesoria..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

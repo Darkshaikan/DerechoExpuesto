@@ -1,0 +1,319 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Derecho de Familia";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Derecho de Familia
+        </span>
+
+        <h1>
+            Derecho de Familia
+        </h1>
+
+        <p>
+            Acompañamiento legal en situaciones familiares
+            que requieren claridad, contención y estrategia jurídica.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/derecho_familia.png"
+                 alt="Derecho de Familia" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Derecho de Familia
+            </span>
+
+
+            <h2>
+                Cuando una situación familiar requiere
+                una solución legal
+            </h2>
+
+
+            <p>
+                Contar con asesoramiento jurídico es fundamental
+                para poder tomar decisiones con información
+                y proteger tus derechos.
+            </p>
+
+
+            <p>
+                Te acompañamos en cuestiones de
+                <strong>
+                    divorcio, alimentos, régimen de comunicación
+                    y autorizaciones de viaje
+                </strong>,
+                procurando proteger tus derechos y,
+                especialmente, el interés de niños,
+                niñas y adolescentes.
+            </p>
+
+
+            <h3>
+                Podemos ayudarte en:
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Divorcios.
+                </li>
+
+                <li>
+                    Cuotas alimentarias.
+                </li>
+
+                <li>
+                    Régimen de comunicación.
+                </li>
+
+                <li>
+                    Autorizaciones de viaje.
+                </li>
+
+                <li>
+                    Acuerdos familiares.
+                </li>
+
+                <li>
+                    Conflictos vinculados con niños,
+                    niñas y adolescentes.
+                </li>
+
+                <li>
+                    Orientación jurídica ante situaciones
+                    familiares complejas.
+                </li>
+
+            </ul>
+
+
+            <p>
+                Cada familia atraviesa circunstancias diferentes.
+                Por eso ofrecemos un asesoramiento personalizado,
+                buscando alternativas que permitan resolver
+                los conflictos de manera adecuada y con
+                el menor impacto posible para quienes están
+                involucrados.
+            </p>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Te acompañamos para tomar decisiones
+                con información, respaldo y estrategia jurídica.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            Cada familia es diferente
+        </h2>
+
+        <p>
+            Analizamos tu situación para buscar
+            una alternativa jurídica adecuada
+            y acompañarte durante el proceso.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre tu situación
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos brevemente tu caso
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaDerechoDeFamilia"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <!-- NOMBRE -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- TELÉFONO -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- CONSULTA -->
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente tu situación familiar..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

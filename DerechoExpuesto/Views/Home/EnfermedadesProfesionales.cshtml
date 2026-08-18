@@ -1,0 +1,310 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Enfermedades Profesionales";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Derecho del Trabajo
+        </span>
+
+        <h1>
+            Enfermedades Profesionales
+        </h1>
+
+        <p>
+            Asesoramiento legal cuando el trabajo
+            afecta tu salud.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/enfermedades_profesionales.png"
+                 alt="Enfermedades profesionales" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Enfermedades profesionales
+            </span>
+
+
+            <h2>
+                ¿Tu trabajo está afectando tu salud?
+            </h2>
+
+
+            <p>
+                Muchas enfermedades y lesiones pueden
+                desarrollarse como consecuencia de las
+                tareas realizadas durante años, los
+                esfuerzos físicos, movimientos repetitivos,
+                posturas forzadas, exposición al ruido u
+                otros factores propios de la actividad laboral.
+            </p>
+
+
+            <p>
+                Brindamos asesoramiento en reclamos por
+                enfermedades profesionales, incluyendo
+                patologías de columna, hombros, miembros
+                superiores e inferiores, hipoacusia y otras
+                afecciones relacionadas con el trabajo.
+            </p>
+
+
+            <h3>
+                Analizamos cada situación
+            </h3>
+
+
+            <p>
+                Evaluamos tus tareas, las condiciones laborales
+                y la documentación médica disponible para
+                determinar las alternativas legales y
+                administrativas que permitan proteger tus
+                derechos frente a la ART.
+            </p>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Patologías de columna.
+                </li>
+
+                <li>
+                    Lesiones de hombros.
+                </li>
+
+                <li>
+                    Afecciones de miembros superiores.
+                </li>
+
+                <li>
+                    Afecciones de miembros inferiores.
+                </li>
+
+                <li>
+                    Hipoacusia.
+                </li>
+
+                <li>
+                    Lesiones vinculadas con esfuerzos físicos.
+                </li>
+
+                <li>
+                    Afecciones por movimientos repetitivos.
+                </li>
+
+                <li>
+                    Enfermedades relacionadas con las
+                    condiciones de trabajo.
+                </li>
+
+            </ul>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Tu salud no debería ser el costo de trabajar.
+                Consultanos.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            Protegé tu salud y tus derechos
+        </h2>
+
+        <p>
+            Si considerás que una enfermedad o lesión
+            está relacionada con tu actividad laboral,
+            podemos analizar tu situación.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre tu caso
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos qué tareas realizás,
+        qué molestias tenés y cómo podemos ayudarte.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaEnfermedadesProfesionales"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente tu situación..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>

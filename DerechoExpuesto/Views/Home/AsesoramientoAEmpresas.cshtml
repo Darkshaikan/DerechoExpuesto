@@ -1,0 +1,301 @@
+﻿@model DerechoExpuesto.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Asesoramiento a Empresas";
+}
+
+
+<!-- =========================
+     ENCABEZADO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle-hero">
+
+    <div class="servicio-detalle-hero-contenido">
+
+        <span class="servicio-detalle-categoria">
+            Empresas
+        </span>
+
+        <h1>
+            Asesoramiento a Empresas
+        </h1>
+
+        <p>
+            Acompañamiento jurídico para tomar decisiones,
+            prevenir conflictos y proteger tu negocio.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTENIDO DEL SERVICIO
+========================== -->
+
+<section class="servicio-detalle">
+
+    <div class="servicio-detalle-contenedor">
+
+
+        <!-- IMAGEN -->
+
+        <div class="servicio-detalle-imagen">
+
+            <img src="~/imagenes/servicios/asesoramiento_empresas.png"
+                 alt="Asesoramiento a Empresas" />
+
+        </div>
+
+
+        <!-- TEXTO -->
+
+        <div class="servicio-detalle-texto">
+
+            <span class="servicio-detalle-etiqueta">
+                Asesoramiento a Empresas
+            </span>
+
+
+            <h2>
+                Prevenir conflictos también es
+                una forma de proteger tu empresa
+            </h2>
+
+
+            <p>
+                Brindamos asesoramiento jurídico integral
+                a empresas y emprendimientos,
+                acompañando tanto la etapa de constitución
+                como las decisiones que surgen durante
+                el desarrollo de la actividad.
+            </p>
+
+
+            <h3>
+                Entre nuestros servicios:
+            </h3>
+
+
+            <ul class="servicio-detalle-lista">
+
+                <li>
+                    Constitución de sociedades.
+                </li>
+
+                <li>
+                    Elaboración y revisión de contratos.
+                </li>
+
+                <li>
+                    Registro y protección de marcas.
+                </li>
+
+                <li>
+                    Asesoramiento laboral.
+                </li>
+
+                <li>
+                    Prevención de conflictos laborales.
+                </li>
+
+                <li>
+                    Acompañamiento en conflictos
+                    y litigios laborales.
+                </li>
+
+                <li>
+                    Análisis jurídico de decisiones comerciales.
+                </li>
+
+                <li>
+                    Asesoramiento para empresas
+                    y emprendimientos en crecimiento.
+                </li>
+
+            </ul>
+
+
+            <p>
+                El objetivo es ayudarte a tomar decisiones
+                con respaldo jurídico, reducir riesgos
+                y contar con una estrategia legal adecuada
+                para cada etapa de tu negocio.
+            </p>
+
+
+            <p class="servicio-detalle-destacado">
+
+                Tu empresa crece.
+                Nosotros te ayudamos a protegerla.
+
+            </p>
+
+
+            <a href="#consulta-servicio"
+               class="btn servicio-detalle-btn">
+
+                Quiero hacer una consulta
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================== -->
+
+<section class="servicio-cta">
+
+    <div class="servicio-cta-contenido">
+
+        <h2>
+            Decisiones con respaldo jurídico
+        </h2>
+
+        <p>
+            Acompañamos a empresas y emprendimientos
+            para prevenir riesgos y encontrar soluciones
+            jurídicas adecuadas para cada etapa.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FORMULARIO
+========================== -->
+
+<section id="consulta-servicio"
+         class="contacto servicio-contacto">
+
+    <h2>
+        Consultanos sobre tu empresa
+    </h2>
+
+
+    <p class="contacto-texto">
+
+        Contanos brevemente qué necesitás
+        y nos pondremos en contacto con vos.
+
+    </p>
+
+
+    @if (
+        TempData["ConsultaEnviada"]
+        != null
+        )
+    {
+        <div class="consulta-exito">
+
+            @TempData["ConsultaEnviada"]
+
+        </div>
+    }
+
+
+    <form asp-controller="Home"
+          asp-action="EnviarConsultaAsesoramientoAEmpresas"
+          method="post">
+
+
+        <div asp-validation-summary="ModelOnly"
+             class="validation-summary">
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Nombre">
+                Nombre y apellido
+            </label>
+
+            <input asp-for="Contacto.Nombre"
+                   placeholder="Tu nombre y apellido"
+                   autocomplete="name" />
+
+            <span asp-validation-for="Contacto.Nombre"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Email">
+                Email
+            </label>
+
+            <input asp-for="Contacto.Email"
+                   placeholder="tuemail@ejemplo.com"
+                   autocomplete="email" />
+
+            <span asp-validation-for="Contacto.Email"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Telefono">
+                Teléfono
+            </label>
+
+            <input asp-for="Contacto.Telefono"
+                   placeholder="+54 9 11..."
+                   autocomplete="tel" />
+
+            <span asp-validation-for="Contacto.Telefono"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <div class="form-grupo">
+
+            <label asp-for="Contacto.Mensaje">
+                Consulta
+            </label>
+
+            <textarea asp-for="Contacto.Mensaje"
+                      placeholder="Contanos brevemente qué necesita tu empresa..."></textarea>
+
+            <span asp-validation-for="Contacto.Mensaje"
+                  class="validation-error">
+            </span>
+
+        </div>
+
+
+        <button type="submit"
+                class="btn form-btn">
+
+            Enviar consulta
+
+        </button>
+
+
+        <p class="form-aclaracion">
+
+            La información enviada será utilizada
+            únicamente para responder tu consulta.
+
+        </p>
+
+    </form>
+
+</section>
