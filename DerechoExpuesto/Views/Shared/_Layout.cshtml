@@ -239,9 +239,101 @@
                     Inicio
                 </a>
 
-                <a href="/#servicios">
-                    Servicios
-                </a>
+
+                <!-- =========================
+                     MENÚ SERVICIOS
+                ========================== -->
+
+                <div class="nav-dropdown"
+                     id="serviciosDropdown">
+
+                    <button type="button"
+                            class="nav-dropdown-toggle"
+                            id="serviciosToggle"
+                            aria-expanded="false"
+                            aria-controls="serviciosMenu">
+
+                        <span>
+                            Servicios
+                        </span>
+
+                        <span class="nav-flecha"
+                              aria-hidden="true">
+                            ▾
+                        </span>
+
+                    </button>
+
+
+                    <div class="nav-dropdown-menu"
+                         id="serviciosMenu">
+
+
+                        <!-- DERECHO DEL TRABAJO -->
+
+                        <div class="nav-subdropdown"
+                             id="trabajoDropdown">
+
+                            <button type="button"
+                                    class="nav-subdropdown-toggle"
+                                    id="trabajoToggle"
+                                    aria-expanded="false"
+                                    aria-controls="trabajoMenu">
+
+                                <span>
+                                    Derecho del Trabajo
+                                </span>
+
+                                <span class="nav-subflecha"
+                                      aria-hidden="true">
+                                    ›
+                                </span>
+
+                            </button>
+
+
+                            <div class="nav-subdropdown-menu"
+                                 id="trabajoMenu">
+
+                                <a href="/#servicios">
+                                    Accidentes de trabajo
+                                </a>
+
+                                <a href="/#servicios">
+                                    Enfermedades profesionales
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- RESTO DE SERVICIOS -->
+
+                        <a href="/#servicios">
+                            Derecho de Familia
+                        </a>
+
+                        <a href="/#servicios">
+                            Sucesiones
+                        </a>
+
+                        <a href="/#servicios">
+                            Amparos de Salud
+                        </a>
+
+                        <a href="/#servicios">
+                            Asesoramiento a Empresas
+                        </a>
+
+                        <a href="/#servicios">
+                            Asesoramiento Jurídico
+                        </a>
+
+                    </div>
+
+                </div>
+
 
                 <a href="/#nosotros">
                     Nosotros
@@ -360,6 +452,10 @@
 
     <script>
 
+        /* =========================
+           CONTACTO MÓVIL
+        ========================== */
+
         const contactoToggle =
             document.getElementById(
                 "contactoToggle"
@@ -420,10 +516,229 @@
                 }
             );
 
+        }
 
-            document.addEventListener(
+
+        /* =========================
+           SERVICIOS
+        ========================== */
+
+        const serviciosDropdown =
+            document.getElementById(
+                "serviciosDropdown"
+            );
+
+        const serviciosToggle =
+            document.getElementById(
+                "serviciosToggle"
+            );
+
+        const serviciosMenu =
+            document.getElementById(
+                "serviciosMenu"
+            );
+
+
+        const trabajoDropdown =
+            document.getElementById(
+                "trabajoDropdown"
+            );
+
+        const trabajoToggle =
+            document.getElementById(
+                "trabajoToggle"
+            );
+
+        const trabajoMenu =
+            document.getElementById(
+                "trabajoMenu"
+            );
+
+
+        function cerrarServicios()
+        {
+
+            if (
+                serviciosDropdown
+                &&
+                serviciosToggle
+            )
+            {
+
+                serviciosDropdown
+                    .classList
+                    .remove(
+                        "activo"
+                    );
+
+
+                serviciosToggle
+                    .setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+            }
+
+
+            if (
+                trabajoDropdown
+                &&
+                trabajoToggle
+            )
+            {
+
+                trabajoDropdown
+                    .classList
+                    .remove(
+                        "activo"
+                    );
+
+
+                trabajoToggle
+                    .setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+            }
+
+        }
+
+
+        if (
+            serviciosToggle
+            &&
+            serviciosDropdown
+        )
+        {
+
+            serviciosToggle.addEventListener(
                 "click",
-                function ()
+                function (event)
+                {
+
+                    event.stopPropagation();
+
+
+                    const abierto =
+                        serviciosDropdown
+                            .classList
+                            .toggle(
+                                "activo"
+                            );
+
+
+                    serviciosToggle
+                        .setAttribute(
+                            "aria-expanded",
+                            abierto
+                        );
+
+
+                    if (
+                        !abierto
+                        &&
+                        trabajoDropdown
+                    )
+                    {
+
+                        trabajoDropdown
+                            .classList
+                            .remove(
+                                "activo"
+                            );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        if (
+            trabajoToggle
+            &&
+            trabajoDropdown
+        )
+        {
+
+            trabajoToggle.addEventListener(
+                "click",
+                function (event)
+                {
+
+                    event.stopPropagation();
+
+
+                    const abierto =
+                        trabajoDropdown
+                            .classList
+                            .toggle(
+                                "activo"
+                            );
+
+
+                    trabajoToggle
+                        .setAttribute(
+                            "aria-expanded",
+                            abierto
+                        );
+
+                }
+            );
+
+        }
+
+
+        if (serviciosMenu)
+        {
+
+            serviciosMenu.addEventListener(
+                "click",
+                function (event)
+                {
+
+                    event.stopPropagation();
+
+                }
+            );
+
+        }
+
+
+        if (trabajoMenu)
+        {
+
+            trabajoMenu.addEventListener(
+                "click",
+                function (event)
+                {
+
+                    event.stopPropagation();
+
+                }
+            );
+
+        }
+
+
+        /* =========================
+           CERRAR MENÚS AL TOCAR
+           FUERA
+        ========================== */
+
+        document.addEventListener(
+            "click",
+            function ()
+            {
+
+                if (
+                    contactoMenu
+                    &&
+                    contactoToggle
+                )
                 {
 
                     contactoMenu
@@ -447,17 +762,46 @@
                         );
 
                 }
-            );
 
-        }
+
+                cerrarServicios();
+
+            }
+        );
+
+
+        /* =========================
+           CERRAR AL ELEGIR SERVICIO
+        ========================== */
+
+        document
+            .querySelectorAll(
+                ".nav-dropdown-menu a"
+            )
+            .forEach(
+                function (link)
+                {
+
+                    link.addEventListener(
+                        "click",
+                        function ()
+                        {
+
+                            cerrarServicios();
+
+                        }
+                    );
+
+                }
+            );
 
     </script>
 
 
     @await RenderSectionAsync(
-    "Scripts",
+        "Scripts",
         required: false
-        )
+    )
 
 </body>
 

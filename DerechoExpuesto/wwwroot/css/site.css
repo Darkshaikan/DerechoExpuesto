@@ -127,6 +127,8 @@ img {
 ========================= */
 
 .navbar {
+    position: relative;
+    z-index: 900;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -164,18 +166,18 @@ nav {
     gap: 20px;
 }
 
-    nav a {
+    nav > a {
         position: relative;
         color: #183B4E;
         text-decoration: none;
         font-weight: 600;
     }
 
-        nav a:hover {
+        nav > a:hover {
             color: #27548A;
         }
 
-        nav a::after {
+        nav > a::after {
             content: "";
             position: absolute;
             left: 0;
@@ -186,9 +188,184 @@ nav {
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
+        nav > a:hover::after {
             width: 100%;
         }
+
+
+/* =========================
+   MENÚ DESPLEGABLE SERVICIOS
+========================= */
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-toggle,
+.nav-subdropdown-toggle {
+    border: none;
+    background: transparent;
+    color: #183B4E;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.nav-dropdown-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+}
+
+    .nav-dropdown-toggle::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -5px;
+        width: 0;
+        height: 2px;
+        background-color: #DDA853;
+        transition: width 0.3s ease;
+    }
+
+.nav-dropdown:hover .nav-dropdown-toggle {
+    color: #27548A;
+}
+
+    .nav-dropdown:hover .nav-dropdown-toggle::after {
+        width: 100%;
+    }
+
+.nav-flecha {
+    font-size: 12px;
+    transition: transform 0.25s ease;
+}
+
+.nav-dropdown.activo .nav-flecha {
+    transform: rotate(180deg);
+}
+
+
+/* =========================
+   PRIMER NIVEL
+========================= */
+
+.nav-dropdown-menu {
+    position: absolute;
+    z-index: 1200;
+    top: calc(100% + 14px);
+    left: 50%;
+    width: 260px;
+    padding: 8px 0;
+    background-color: white;
+    border-top: 4px solid #DDA853;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(24, 59, 78, 0.20);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, -8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-dropdown:hover > .nav-dropdown-menu,
+.nav-dropdown.activo > .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+}
+
+.nav-dropdown-menu > a,
+.nav-subdropdown-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 18px;
+    color: #183B4E;
+    text-align: left;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(24, 59, 78, 0.08);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+    .nav-dropdown-menu > a:hover,
+    .nav-subdropdown-toggle:hover {
+        background-color: #F5EEDC;
+        color: #27548A;
+    }
+
+    .nav-dropdown-menu > a:last-child {
+        border-bottom: none;
+    }
+
+
+/* =========================
+   SUBMENÚ DERECHO DEL TRABAJO
+========================= */
+
+.nav-subdropdown {
+    position: relative;
+}
+
+.nav-subflecha {
+    margin-left: 10px;
+    color: #DDA853;
+    font-size: 20px;
+    transition: transform 0.25s ease;
+}
+
+.nav-subdropdown.activo .nav-subflecha {
+    transform: rotate(90deg);
+}
+
+.nav-subdropdown-menu {
+    position: absolute;
+    z-index: 1250;
+    top: 0;
+    left: calc(100% + 6px);
+    width: 280px;
+    padding: 8px 0;
+    background-color: white;
+    border-top: 4px solid #DDA853;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(24, 59, 78, 0.20);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-8px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+.nav-subdropdown:hover > .nav-subdropdown-menu,
+.nav-subdropdown.activo > .nav-subdropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+}
+
+.nav-subdropdown-menu a {
+    display: block;
+    padding: 13px 18px;
+    color: #183B4E;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(24, 59, 78, 0.08);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+    .nav-subdropdown-menu a:hover {
+        background-color: #F5EEDC;
+        color: #27548A;
+    }
+
+    .nav-subdropdown-menu a:last-child {
+        border-bottom: none;
+    }
 
 
 /* =========================
@@ -316,7 +493,6 @@ nav {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
     overflow: hidden;
-    transition: all 0.3s ease;
 }
 
 
@@ -661,7 +837,7 @@ nav {
 
 
     /* =========================
-       NAVBAR
+       NAVBAR MÓVIL
     ========================= */
 
     .navbar {
@@ -690,6 +866,97 @@ nav {
 
     .consultar-btn {
         display: none;
+    }
+
+
+    /* =========================
+       SERVICIOS MÓVIL
+    ========================= */
+
+    .nav-dropdown {
+        position: static;
+    }
+
+    .nav-dropdown-toggle {
+        font-size: 14px;
+    }
+
+    .nav-dropdown:hover > .nav-dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .nav-dropdown.activo > .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .nav-dropdown-menu {
+        top: auto;
+        left: 12px;
+        right: 12px;
+        width: auto;
+        margin-top: 12px;
+        transform: translateY(-8px);
+    }
+
+    .nav-dropdown.activo > .nav-dropdown-menu {
+        transform: translateY(0);
+    }
+
+
+    /* =========================
+       SUBMENÚ MÓVIL
+    ========================= */
+
+    .nav-subdropdown {
+        position: static;
+    }
+
+        .nav-subdropdown:hover > .nav-subdropdown-menu {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .nav-subdropdown.activo > .nav-subdropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+    .nav-subdropdown-menu {
+        position: static;
+        width: 100%;
+        padding: 0;
+        border-top: none;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: #F5EEDC;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: none;
+        display: none;
+    }
+
+    .nav-subdropdown.activo > .nav-subdropdown-menu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    .nav-subdropdown-menu a {
+        padding-left: 32px;
+        font-size: 13px;
+    }
+
+    .nav-subdropdown.activo .nav-subflecha {
+        transform: rotate(90deg);
     }
 
 
@@ -731,7 +998,7 @@ nav {
 
 
     /* =========================
-       TEXTO DE TARJETAS MÓVIL
+       TEXTO TARJETAS MÓVIL
     ========================= */
 
     .card-descripcion {
@@ -746,7 +1013,7 @@ nav {
 
 
     /* =========================
-       VER MÁS EN MÓVIL
+       VER MÁS MÓVIL
     ========================= */
 
     .card-indicador {
@@ -795,3 +1062,4 @@ nav {
         height: 50px;
     }
 }
+ 
